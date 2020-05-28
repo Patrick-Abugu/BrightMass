@@ -1,0 +1,9 @@
+
+{% block content %}
+        {% for posts in things %}
+        <div class="post">
+          <a href="{% url 'site:details' slug=posts.slug %}"class="title"><img src="{{ posts.image.url}}" class="thumb" alt="">
+            {{posts.title}}</a>
+          <p>{{posts.snippet}}</p>
+         {% endfor %}
+{% endblock %}

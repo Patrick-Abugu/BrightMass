@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta property="og:image" content="/static/bmt.jpg" />
+    <meta property="og:site_name" content="Bright Mass Transit Limited" />
+    <meta name="description" content="Bright Mass Transit Limited is a Nigerian Transport Company providing afffordable passengers transit and delivery of goods and services">
+    <meta name="keywords" content="bright mass transit limited, BMT, transport, transit, buses, passengers, way bill, safety, affordable, tickets,abuja, enugu,abakaliki,obollo">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title class="head">Bright Mass Transit</title>
+    <link rel="stylesheet" href="{% static 'home.css'%}" >
+    <link media="only screen and (min-width:882px) " rel="stylesheet" href="{% static 'landscape.css'%}" type="text/css" >
+</head>
+<body onpageshow="hide()" style="zoom: 1;">
+        <div class="header">
+          <div class="logo" style="background-color:white;"><a href="{% url 'site:home' %}"><img src="/static/images/bmt.png"></a></div>
+            <!--navigation bar-->
+            <button class="toggler" onclick="toggle()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          </div>
+            <div id="nav-div">
+            <ul class="nav-ul">
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'site:home' %}">HOME <i class="fa fa-home" style = "color: blue"></i></a></li>
+              <li><a href="{% url 'site:about' %}">ABOUT</a></li>
+              <li><a href="{% url 'site:services' %}">SERVICES</a></li>
+              <li><a href="#contact">CONTACT | <i class="fa fa-phone" color: blue></i></a></li></a></li>
+              <li><form action="{% url 'profile:logout' %}" method="post" onsubmit="logout()"></p>
+                {% csrf_token %}
+                <button class="logout" type="submit" > Logout </button>
+                </form></li>
+              {% else %}
+              <li><a href="{% url 'site:home' %}">HOME <i class="fa fa-home" color: blue></i></a></li>
+              <li><a href="{% url 'site:about' %}">ABOUT</a></li>
+              <li><a href="{% url 'site:services' %}">SERVICES</a></li>
+              <li><a href="#contact">CONTACT | <i class="fa fa-phone" color: blue></i></a></li>
+              <li><a href="{% url 'profile:login' %}" onclick="login()">LOGIN</a></li>
+              <li><a href="{% url 'profile:signup' %}">SIGNUP</a></li>
+              {% endif %}
+              </ul>
+            </div>
+
+  <!--navigation ends-->
+          <div class="create_div"> <a class="create_link" href= "{% url 'site:create_post' %}"> Create Post </a></div>
+{% block content %}
+{% endblock %}
+
+<div class="contact">
+    <div class="float1">
+        <b  id="contact" class="sub"> CONTACT US </b>
+        <p> Our Offices are always open daily between 6:00 am and 2:00 pm.<br /> Our Head Office is located at No: 23 New Markurdi road, Obollo_ Afor, Enugu state.<br />
+        <iframe src="https://www.google.com/maps/place/6%C2%B055'03.1%22N+7%C2%B030'48.9%22E/@6.91752,7.5113963,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d6.9175198!4d7.5135849" ></iframe>
+        </p>
+    </div>
+    <div class="float1">
+       <p class="sub"> Important Links </p>
+        <ul class="imp">
+        <li><a class="imp" href="{% url 'site:home' %}">Home</a> </li>
+         <li><a class="imp" href="{% url 'site:services' %}">Services</a> </li>
+         <li><a class="imp" href="{% url 'site:about' %}">About us</a> </li>
+          <li><a class="imp" href="127.0.0:1/admin">Admin Login </a> </li>
+            <li><a class="imp" href="{% url 'profile:signup' %}">Sign up</a> </li>
+
+         </ul>
+    </div>
+<p><a class="sub" href="tel: +2348035808049">CALL US  <i class="fa fa-phone" style = "color: blue"></i></a> </p>
+</div>
+
+ <footer>
+      <hr />  Bright Mass Transit Limited <br />
+       &copy 2019<br />
+       <a href="mail to:patrickabugu@gmail.com">patrickabugu@gmail.com</a>
+     </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src ="/static/js/fill slug.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/toggle.js"></script>
+</body>
+</html>

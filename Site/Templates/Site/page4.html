@@ -1,0 +1,55 @@
+{% extends 'site/base.html' %}
+{% block content %}
+<div class="home">
+    <div class="float">
+        {% for post in contents %}
+        <div class="post">
+        <a class=" title" href="{% url 'site:details' slug=post.slug %}">{{post.title}}</a>
+        <p class="author"> By <i class="fa fa-user " style = "color: red"> </i>  {{ post.user  }}  |  <i class="fa fa-calendar" style = "color: red"> </i>  {{post.date}}</p>
+        <a href="{% url 'site:details' slug=post.slug %}"><img src="{{ post.image.url}}" class="thumb" alt=""></a>
+        <p> {{ post.snippet }}</p>
+
+        <a class="more" href="{% url 'site:details' slug=post.slug %}"><span class ="more">Read More</span> <i class="fa fa-angle-right color: blue"></i></a>  </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="float">
+        <div class="box">
+            <p id="about" class="head">About Us </p><br />
+            <p class="text">Bright MAss Transit Limited is an ingegenous Nigeria transport company that is dedicated transportationof passengers as well as prompt delivery of goods and services to different states within the country</p>
+        </div>
+        <div class="box">
+            <p class="head">Our Mission</p><br />
+            <p class="text">Provision of a reliable and customer friendly transport services.We strive to make passengers' satisfaction and safety
+            our priority through the provision of high standard vehicles and regular maintenance check ups on all our vehicles plying varoius routes.
+            we have the most passengers-friendly drivers who understand the culture of team work.</p>
+        </div>
+
+        <div class="box">
+            <p class="head">Our Vision</p><br />
+            <p class="text">To become African-based leading transport company, providing the safest and most dependable transportation of passengers
+            and prompt delivery of goods and services. We are committed in becoming the only transport company plying
+            virtually all local routes across Nigeria and major African countries.</p>
+        </div>
+
+        <div class="latest">
+            <p class="head"> LATEST POSTS </p>
+            {% for post in things %}
+            <div class="post">
+            <a href="{% url 'site:details' slug=post.slug %}"class="title"><img src="{{ post.image.url}}" class="thumb" alt="">
+            {{post.title}}</a>
+          <p>{{post.snippet}}</p>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="{% url 'site:home' %}">1</a></li>
+    <li class="page-item"><a class="page-link" href="{% url 'site:page2' %}">2</a></li>
+    <li class="page-item"><a class="page-link" href="{% url 'site:page3' %}">3</a></li>
+    <li class="page-item"><a class="page-link" href="{% url 'site:page4' %}">4</a></li>
+  </ul>
+</nav>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'site/base.html'%}
+{% block content %}
+<div class="home">
+    <div class="float">
+        <div class="title"> {{details.title}}  </div>
+      <div class="image1-div">
+          <img class ="img "src="{{ details.image.url}}"/>
+      </div>
+        <p class="body">{{details.body}} </p>
+        <p class="author"> By <i class="fa fa-user " style = "color: red"> </i>  {{ details.user  }}  |  <i class="fa fa-calendar" style = "color: red"> </i>  {{details.date}}</p>
+    </div>
+
+    <div class="float">
+        <div class="box">
+            <p id="about" class="head">About Us </p><br />
+            <p class="text">Bright MAss Transit Limited is an ingegenous Nigeria transport company that is dedicated transportationof passengers as well as prompt delivery of goods and services to different states within the country</p>
+        </div>
+        <div class="box">
+            <p class="head">Our Mission</p><br />
+            <p class="text">Provision of a reliable and customer friendly transport services.We strive to make passengers' satisfaction and safety
+            our priority through the provision of high standard vehicles and regular maintenance check ups on all our vehicles plying varoius routes.
+            we have the most passengers-friendly drivers who understand the culture of team work.</p>
+        </div>
+
+        <div class="box">
+            <p class="head">Our Vision</p><br />
+            <p class="text">To become African-based leading transport company, providing the safest and most dependable transportation of passengers
+            and prompt delivery of goods and services. We are coommitted in becoming the only transport company plying
+            virtually all local routes across Nigeria and major African countries.</p>
+        </div>
+
+        <div class="latest">
+            <p class="head"> LATEST POSTS </p>
+            {% for post in things %}
+            <div class="post">
+            <a href="{% url 'site:details' slug=post.slug %}"class="title"><img src="{{ post.image.url}}" class="mr-3" alt="">
+            {{post.title}}</a>
+            <p>{{post.snippet}}</p>
+            {% endfor %}
+         </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<div class="feedback">
+  <p class="sub"> Send us your feedback</p>
+  <form class="Feedbackform" action="{% url 'site:feedback'%}" method="post" enctype="multipart/form-data">
+    {% csrf_token%}
+    {{form.as_p}}
+    <p><input class="send" type="submit" value="Send"></p>
+  </form>
+</div>
+{% endblock %}
