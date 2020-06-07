@@ -1,1 +1,1 @@
-"# BrightMass" 
+# news-channel
